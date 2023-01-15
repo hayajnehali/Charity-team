@@ -1,0 +1,181 @@
+<div id="body" class="g-sidenav-show bg-gray-100">
+  <aside
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3"
+    id="sidenav-main" style="overflow: hidden;"
+  >
+    <app-headerandfooter></app-headerandfooter>
+  </aside>
+
+
+
+
+
+
+ <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg" >
+    <app-sidebar></app-sidebar>
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6>All Donations</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0" id="content">
+                  <section >
+                    <div class="container">
+                      <div class="row justify-space-between py-2">
+                        <div class="col-lg-12 mx-auto">
+                          <form [formGroup]="searchForm">
+                            <div class="row">
+                              <div class="col-3" style="position: relative;">
+                                <span class="ins">Start</span>
+                                <input
+                                  type="date"
+                                  matInput
+                                  formControlName="date1"
+                                  placeholder="Start Date"
+                                  class="in"
+                                />
+                              </div>
+                              <div class="col-3" style="position: relative;">
+                                <span class="ins">End</span>
+                                <input
+                                  type="date"
+                                  matInput
+                                  formControlName="date2"
+                                  placeholder="Regular"
+                                  class="in"
+                                />
+                              </div>
+                              <div class="col-3">
+                                <input
+                                  type="button"
+                                  value="Search"
+                                  (click)="searchindoniation()"
+                                  class="btn btn-success"
+                                />
+                              </div>
+                              <div class="col-3">
+                                  <button
+                                  mat-raised-button
+                                  (click)="DownloadData()"
+                                  class="btn btn-success"
+                                >
+                                  download report
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <table id="my-table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th
+                          class="xx z"
+                        >
+                          Charity Name
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                          Benefactor First Name
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                          Benefactor Last Name
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                          Benefactor Email
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                          Donation Date
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                          Amount
+                        </th>
+
+                        <!-- <th></th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of home.alldonation">
+                        <td>
+                          <p class="xx ">
+                            {{ obj.charityname }}
+                          </p>
+                        </td>
+                        <td>
+                          <p class="xx ">
+                            {{ obj.firstname }}
+                          </p>
+                        </td>
+                        <td>
+                          <p class="xx ">
+                            {{ obj.lastname }}
+                          </p>
+                        </td>
+                        <td>
+                          <span class="xx ">{{
+                            obj.email
+                          }}</span>
+                        </td>
+                        <td>
+                          <p class="xx ">
+                            {{ obj.datedonation | date : "dd/MM/yyy " }}
+                          </p>
+                        </td>
+                        <td>
+                          <p class="xx ">{{ obj.amount  }}
+                          </p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="f">
+                          benefactors:
+                          {{ this.admin.generalreport.numberofdoners }}
+                        </td>
+                        <td class="f">
+                          beneficiaries:
+                          {{ this.admin.generalreport.numberofbenificiaries }}
+                        </td>
+                        <td class="f">
+                          users: {{ this.admin.generalreport.totalusers }}
+                        </td>
+                        <td class="f">
+                          total Donations:
+                          {{ this.admin.generalreport.numberofdonations }}
+                        </td>
+                        <td class="f">
+                          total Amounts:
+                          {{ this.admin.generalreport.totaldonations }}
+                        </td>
+                        <td class="f"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </main>
+</div>

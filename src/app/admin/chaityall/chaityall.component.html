@@ -1,0 +1,166 @@
+<ng-template #docDialog class="mat-mdc-dialog-surfac">
+  <div style="width: 600px;height: 600px;">
+    <iframe width="100%" height="100%" id="ifram" frameborder="5"></iframe>
+  </div>
+</ng-template>
+
+
+<div id="body" class="g-sidenav-show bg-gray-100">
+  <aside
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3"
+    id="sidenav-main" style="overflow: hidden;"
+  >
+    <app-headerandfooter></app-headerandfooter>
+  </aside>
+
+
+
+
+
+
+ <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg" >
+    <app-sidebar></app-sidebar>
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-header pb-0">
+                <h6>Select Goal</h6>
+              </div>
+              <div class="card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0" id="content">
+                  <section >
+                    <div class="container">
+                      <div class="row justify-space-between py-2">
+                        <div class="col-lg-12 mx-auto">
+                    
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <table id="my-table" style="width: 100%;">
+                    <thead>
+                      <tr>
+                        <th
+                          class="xx z"
+                        >
+                          Charity Image
+                        </th>
+                        <th
+                        class="xx z"
+                      >
+                        Charity Name
+                      </th>
+                        <th
+                          class="xx z"
+                        >
+                        Description
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                        Document
+                        </th>
+                        <th
+                          class="xx z"
+                        >
+                        Numdonation
+                        </th>
+                        <th class="xx z">
+                          Action
+                        </th>
+                      
+
+                        <!-- <th></th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr  *ngFor="let obj of admin.allCharityWating">
+                        <td>
+                          <p class="xx ">
+                            <img src="../../../assets/img/{{ obj.imagepath }}" class="avatar avatar-sm me-3"
+                              alt="user1" />
+                          </p>
+                        </td>
+                        <td>
+                          <p class="xx ">
+                            {{ obj.charityname }} $
+                          </p>
+                        </td>
+                        <td>
+                          <p class="xx" >
+                            {{ obj.email }} $
+                          </p>
+                        </td>
+                        <td><p  (click)="doc(obj.docidFk)" class="xx">
+                          Show Document
+                        </p>
+                      </td>
+                      <td>
+                        <p  class="xx">
+                          {{ obj.numdonation }}
+                        </p>
+                      </td>
+                        <td class="xx">
+                          <button type="button" (click)="updatecharityInfo(obj.charityid)"
+                            class="btn bg-gradient-primary btn-sm me-2" style="padding: 10px 16px">Determine the
+                            amount</button>
+                        </td>
+
+
+                      </tr>
+
+                      
+                   
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+<ng-template #callUpdatecharityDialog class="mat-mdc-dialog-surfac">
+
+  <form [formGroup]="updateCharityForm" >
+      <div class="row"  style=" width: 551px; align-items: center;   justify-content: center; margin: 0; padding: 0;">
+         <h3 class="h3">Updade Charity Informations</h3>
+         <hr style="height: 1px; width: 100%; background-color:aquamarine;">
+      
+
+        <div class="col-10 div">
+          <label for="firstname1">Goal</label>
+          <input id="firstname1" type="text"  class="input"   matInput formControlName="goal" [(ngModel)]="data.goal">
+        </div>
+ 
+    
+
+ 
+      </div>
+  </form>
+
+
+
+
+  <hr style="height: 1px;background-color: #000;">
+  <div class="row" style=" text-align: center;margin: 0;
+  justify-content: space-around;">
+   <button style="width: 33%;" class="btn" mat-button mat-dialog-close>Cancel</button>
+   <button style="width: 33%;" class="btn" mat-button   cdkFocusInitial (click)="updateCharityData()">Update</button>
+
+  </div>
+</ng-template>
